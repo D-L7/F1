@@ -1,0 +1,2061 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formula 1 — Dr. Mohammed Qasim</title>
+  <link rel="icon" href="F1.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Rajdhani:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --red: #E10600;
+      --red-dark: #B30500;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --dark2: #1A1A1A;
+      --dark3: #222222;
+      --gray: #888888;
+      --gray-light: #CCCCCC;
+      --white: #FFFFFF;
+      --off-white: #F7F7F7;
+      --border: rgba(255, 255, 255, 0.08);
+      --font-ar: 'Cairo', sans-serif;
+      --font-en: 'Rajdhani', 'Oswald', sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-ar);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+      direction: rtl;
+    }
+
+    /* ── LANGUAGE TOGGLE ── */
+    .lang-bar {
+      background: var(--red);
+      padding: 6px 2rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      color: #fff;
+      font-size: 12px;
+      font-family: var(--font-ar);
+      font-weight: 700;
+      padding: 3px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .lang-btn.active {
+      background: #fff;
+      color: var(--red);
+      border-color: #fff;
+    }
+
+    .lang-btn:hover:not(.active) {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      background: var(--black);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      border-bottom: 3px solid var(--red);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      background: var(--red);
+      color: #fff;
+      font-family: var(--font-en);
+      font-size: 18px;
+      font-weight: 700;
+      padding: 4px 10px;
+      letter-spacing: 1px;
+      border-radius: 4px;
+    }
+
+    .logo-text {
+      color: #fff;
+      font-family: var(--font-en);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .logo-text span {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 50% 0%, rgba(225, 6, 0, 0.18) 0%, transparent 70%),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255, 255, 255, 0.015) 60px, rgba(255, 255, 255, 0.015) 61px);
+      pointer-events: none;
+    }
+
+    .hero-checkered {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 2rem;
+      opacity: 0.6;
+    }
+
+    .hero-checkered .sq {
+      width: 14px;
+      height: 14px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-en);
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: var(--red);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-family: var(--font-en);
+      font-size: clamp(72px, 12vw, 140px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 0.9;
+      letter-spacing: -4px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-title .highlight {
+      color: var(--red);
+    }
+
+    .hero-num {
+      font-family: var(--font-en);
+      font-size: clamp(100px, 18vw, 200px);
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(225, 6, 0, 0.4);
+      line-height: 0.85;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 16px;
+      color: #888;
+      letter-spacing: 1px;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tagline .en {
+      font-family: var(--font-en);
+      color: #aaa;
+    }
+
+    .hero-stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      padding: 1rem 2.5rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .hero-stat:last-child {
+      border-right: none;
+    }
+
+    [dir="rtl"] .hero-stat {
+      border-right: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    [dir="rtl"] .hero-stat:last-child {
+      border-left: none;
+    }
+
+    .hero-stat .n {
+      font-family: var(--font-en);
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+    }
+
+    .hero-stat .l {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: #444;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-cue .arrow {
+      font-size: 18px;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0)
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(6px)
+      }
+    }
+
+    /* ── DEDICATION ── */
+    .dedication-section {
+      background: var(--black);
+      padding: 0 2rem 4rem;
+    }
+
+    .dedication-card {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--dark2);
+      border: 1px solid var(--red);
+      border-radius: 16px;
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dedication-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(225, 6, 0, 0.15), transparent 70%);
+      pointer-events: none;
+    }
+
+    .ded-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-en);
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      border: 3px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ded-content {}
+
+    .ded-label {
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 6px;
+    }
+
+    .ded-name {
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .ded-desc {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.6;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 5rem 2rem;
+    }
+
+    .section.dark-bg {
+      background: var(--black);
+      color: #fff;
+    }
+
+    .section.light-bg {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .section.off-bg {
+      background: var(--off-white);
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .section-title .en-accent {
+      font-family: var(--font-en);
+      color: var(--red);
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 3rem;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .section.dark-bg .section-subtitle {
+      color: #666;
+    }
+
+    .divider {
+      width: 48px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline {
+      position: relative;
+      padding-right: 2rem;
+    }
+
+    [dir="ltr"] .timeline {
+      padding-right: 0;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--red), transparent);
+    }
+
+    [dir="ltr"] .timeline::before {
+      right: auto;
+      left: 0;
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-right: 2rem;
+    }
+
+    [dir="ltr"] .tl-item {
+      padding-right: 0;
+      padding-left: 2rem;
+    }
+
+    .tl-dot {
+      position: absolute;
+      right: -7px;
+      top: 5px;
+      width: 14px;
+      height: 14px;
+      background: var(--red);
+      border-radius: 50%;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--red);
+    }
+
+    [dir="ltr"] .tl-dot {
+      right: auto;
+      left: -7px;
+    }
+
+    .section.dark-bg .tl-dot {
+      border-color: var(--black);
+    }
+
+    .tl-year {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .tl-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .tl-body {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #888;
+    }
+
+    .section.light-bg .tl-body {
+      color: #555;
+    }
+
+    /* ── RACE WEEKEND ── */
+    .rw-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+    }
+
+    .rw-col {
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .rw-col:last-child {
+      border-right: none;
+    }
+
+    [dir="rtl"] .rw-col {
+      border-right: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    [dir="rtl"] .rw-col:last-child {
+      border-left: none;
+    }
+
+    .rw-head {
+      background: var(--red);
+      padding: 12px 8px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .rw-body {
+      padding: 20px 12px;
+      text-align: center;
+    }
+
+    .rw-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .rw-session {
+      font-size: 12px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .rw-tag {
+      display: inline-block;
+      background: rgba(225, 6, 0, 0.15);
+      color: var(--red);
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .rw-tag.main {
+      background: var(--red);
+      color: #fff;
+    }
+
+    /* ── POINTS TABLE ── */
+    .points-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+    }
+
+    .point-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+
+    .point-card:hover {
+      border-color: var(--red);
+    }
+
+    .point-card .pos {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 6px;
+    }
+
+    .point-card .pts {
+      font-family: var(--font-en);
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .point-card .lbl {
+      font-size: 10px;
+      color: #555;
+    }
+
+    /* ── CAR PARTS ── */
+    .parts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 3rem;
+    }
+
+    .part-card {
+      background: #fff;
+      border: 1px solid #ebebeb;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s;
+    }
+
+    .part-card:hover {
+      border-color: var(--red);
+      transform: translateY(-2px);
+    }
+
+    .part-num {
+      font-family: var(--font-en);
+      font-size: 48px;
+      font-weight: 700;
+      color: rgba(225, 6, 0, 0.12);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .part-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .part-title .en {
+      font-family: var(--font-en);
+      font-size: 12px;
+      color: #aaa;
+      display: block;
+    }
+
+    .part-body {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    /* ── SPEED BARS ── */
+    .speed-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .speed-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 80px;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .speed-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .speed-track {
+      background: #f0f0f0;
+      border-radius: 4px;
+      height: 8px;
+      overflow: hidden;
+    }
+
+    .speed-fill {
+      height: 100%;
+      background: var(--red);
+      border-radius: 4px;
+      transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .speed-val {
+      font-family: var(--font-en);
+      font-size: 13px;
+      font-weight: 700;
+      color: #333;
+      text-align: right;
+    }
+
+    [dir="rtl"] .speed-val {
+      text-align: left;
+    }
+
+    /* ── TEAMS GRID ── */
+    .teams-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+    }
+
+    .team-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 1.25rem;
+      text-align: center;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .team-card:hover {
+      border-color: var(--red);
+      transform: translateY(-3px);
+    }
+
+    .team-stripe {
+      width: 40px;
+      height: 5px;
+      border-radius: 3px;
+      margin: 0 auto 14px;
+    }
+
+    .team-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .team-base {
+      font-size: 11px;
+      color: #555;
+    }
+
+    .team-flag {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    /* ── CHAMPIONS ── */
+    .champ-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .champ-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      border: 1px solid #ebebeb;
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+
+    .champ-row:hover {
+      border-color: var(--red);
+      background: #fff8f8;
+    }
+
+    .champ-rank {
+      font-family: var(--font-en);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--red);
+      min-width: 28px;
+    }
+
+    .champ-info {
+      flex: 1;
+    }
+
+    .champ-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+
+    .champ-team {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .champ-years {
+      font-family: var(--font-en);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--red);
+      text-align: left;
+    }
+
+    [dir="rtl"] .champ-years {
+      text-align: right;
+    }
+
+    .champ-titles {
+      background: var(--red);
+      color: #fff;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── RULES ── */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .rule-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.2s;
+    }
+
+    .rule-card:hover {
+      border-color: var(--red);
+    }
+
+    .rule-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .rule-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .rule-body {
+      font-size: 12px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ── DR. DEDICATION SECTION ── */
+    .dr-section {
+      background: var(--black);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .dr-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .dr-avatar-large {
+      width: 100px;
+      height: 100px;
+      background: var(--red);
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-en);
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      border: 4px solid rgba(225, 6, 0, 0.3);
+      box-shadow: 0 0 40px rgba(225, 6, 0, 0.3);
+    }
+
+    .dr-label {
+      font-size: 11px;
+      color: #444;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .dr-name {
+      font-size: 36px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .dr-title-text {
+      color: var(--red);
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-en);
+    }
+
+    .dr-msg {
+      font-size: 15px;
+      color: #777;
+      line-height: 1.9;
+      margin-bottom: 2rem;
+    }
+
+    .dr-badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .dr-badge {
+      background: var(--dark2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #aaa;
+      font-size: 12px;
+      padding: 8px 18px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dr-badge .ico {
+      color: var(--red);
+      font-size: 14px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #050505;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 4px solid var(--red);
+    }
+
+    .footer-logo {
+      font-family: var(--font-en);
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .footer-logo span {
+      color: var(--red);
+    }
+
+    .footer-sub {
+      font-size: 12px;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-nav a {
+      color: #555;
+      font-size: 12px;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover {
+      color: var(--red);
+    }
+
+    .footer-ded {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* ── UTILITIES ── */
+    .badge {
+      display: inline-block;
+      background: rgba(225, 6, 0, 0.1);
+      color: var(--red);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .rw-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-title {
+        font-size: 60px;
+      }
+
+      .hero-num {
+        font-size: 100px;
+      }
+
+      nav {
+        padding: 0 1rem;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+      }
+
+      .hero-stat {
+        padding: 0.75rem 1.5rem;
+      }
+
+      .dedication-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .speed-row {
+        grid-template-columns: 120px 1fr 60px;
+      }
+    }
+
+    /* ── LANG CONTENT ── */
+    .ar-content {
+      display: block;
+    }
+
+    .en-content {
+      display: none;
+    }
+
+    body.lang-en .ar-content {
+      display: none;
+    }
+
+    body.lang-en .en-content {
+      display: block;
+    }
+
+    body.lang-en {
+      font-family: var(--font-en);
+      direction: ltr;
+    }
+
+    body.lang-en .timeline {
+      padding-right: 0;
+      padding-left: 2rem;
+    }
+
+    body.lang-en .timeline::before {
+      right: auto;
+      left: 0;
+    }
+
+    body.lang-en .tl-item {
+      padding-right: 0;
+      padding-left: 2rem;
+    }
+
+    body.lang-en .tl-dot {
+      right: auto;
+      left: -7px;
+    }
+
+    body.lang-en [dir="rtl"] .hero-stat {
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      border-left: none;
+    }
+
+    body.lang-en [dir="rtl"] .hero-stat:last-child {
+      border-right: none;
+    }
+
+    body.lang-en [dir="rtl"] .rw-col {
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: none;
+    }
+
+    body.lang-en [dir="rtl"] .rw-col:last-child {
+      border-right: none;
+    }
+
+    body.lang-en .champ-years {
+      text-align: right;
+    }
+
+    body.lang-en .speed-val {
+      text-align: right;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LANG BAR -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('ar')" id="btn-ar">عربي</button>
+    <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="logo-badge">F1</div>
+      <div class="logo-text">FORMULA <span>1</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#history"><span class="ar-content">التاريخ</span><span class="en-content">History</span></a></li>
+      <li><a href="#races"><span class="ar-content">السباقات</span><span class="en-content">Races</span></a></li>
+      <li><a href="#cars"><span class="ar-content">السيارات</span><span class="en-content">Cars</span></a></li>
+      <li><a href="#teams"><span class="ar-content">الفرق</span><span class="en-content">Teams</span></a></li>
+      <li><a href="#champions"><span class="ar-content">الأبطال</span><span class="en-content">Champions</span></a></li>
+      <li><a href="#rules"><span class="ar-content">القوانين</span><span class="en-content">Rules</span></a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">The Pinnacle of Motorsport · قمة رياضة السيارات</div>
+    <div class="hero-title">FORMULA</div>
+    <div class="hero-num">1</div>
+    <div class="hero-tagline">
+      <span class="ar-content">السرعة · القوة · الدقة · الابتكار</span>
+      <span class="en-content en">Speed · Power · Precision · Innovation</span>
+    </div>
+    <div class="hero-stats-row">
+      <div class="hero-stat">
+        <div class="n">75+</div>
+        <div class="l ar-content">سنة من التاريخ</div>
+        <div class="l en-content">Years of History</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n">24</div>
+        <div class="l ar-content">سباق عالمي</div>
+        <div class="l en-content">Grand Prix Races</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n">10</div>
+        <div class="l ar-content">فرق متنافسة</div>
+        <div class="l en-content">Constructor Teams</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n">373</div>
+        <div class="l ar-content">كم/س أقصى سرعة</div>
+        <div class="l en-content">km/h Top Speed</div>
+      </div>
+      <div class="hero-stat">
+        <div class="n">1000+</div>
+        <div class="l ar-content">حصان قوة المحرك</div>
+        <div class="l en-content">Horsepower Engine</div>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <span class="ar-content">اكتشف المزيد</span>
+      <span class="en-content">Explore</span>
+      <span class="arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- DEDICATION -->
+  <div class="dedication-section">
+    <div class="dedication-card">
+      <div class="ded-avatar">MQ</div>
+      <div class="ded-content">
+        <div class="ded-label ar-content">مُهدى بشكل خاص إلى</div>
+        <div class="ded-label en-content">Dedicated Exclusively To</div>
+        <div class="ded-name ar-content">الدكتور محمد قاسم</div>
+        <div class="ded-name en-content">Dr. Mohammed Qasim</div>
+        <div class="ded-desc ar-content">دليلك الشامل الاحترافي لعالم الفورمولا 1 — التاريخ الكامل، تصنيع السيارات،
+          السباقات، الفرق، الأبطال، والقوانين. كل شيء في مكان واحد، صُنع خصيصًا لك.</div>
+        <div class="ded-desc en-content">Your complete professional guide to the world of Formula 1 — full history, car
+          manufacturing, races, teams, champions, and regulations. Everything in one place, made exclusively for you.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY SECTION -->
+  <section class="section light-bg" id="history">
+    <div class="section-inner">
+      <div class="section-tag ar-content">التاريخ</div>
+      <div class="section-tag en-content">History</div>
+      <div class="divider"></div>
+      <h2 class="section-title ar-content">تاريخ <span class="en-accent">Formula 1</span></h2>
+      <h2 class="section-title en-content">The History of <span class="en-accent">Formula 1</span></h2>
+      <p class="section-subtitle ar-content">من نشأتها بعد الحرب العالمية الثانية إلى الحاضر — رحلة 75 عامًا من الإثارة
+        والابتكار والتاريخ</p>
+      <p class="section-subtitle en-content">From its post-WWII origins to the present — a 75-year journey of
+        excitement, innovation, and history</p>
+
+      <div class="grid-2">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1946 — FOUNDATION</div>
+            <div class="tl-title ar-content">تأسيس الفورمولا 1</div>
+            <div class="tl-title en-content">Formula 1 Founded</div>
+            <div class="tl-body ar-content">أنشأت الاتحادية الدولية للسيارات (FIA) إطار الفورمولا 1 التنظيمي بعد الحرب
+              العالمية الثانية، ووضعت قواعد ومواصفات تقنية للبطولة الجديدة.</div>
+            <div class="tl-body en-content">The FIA established the Formula 1 regulatory framework after WWII, creating
+              rules and technical specifications for the new championship.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1950 — FIRST SEASON</div>
+            <div class="tl-title ar-content">أول بطولة عالمية</div>
+            <div class="tl-title en-content">First World Championship</div>
+            <div class="tl-body ar-content">انطلقت أول بطولة عالمية للفورمولا 1 من سيلفرستون في المملكة المتحدة. وفاز
+              جيوسيبي فارينا بأول لقب عالمي في التاريخ مع فريق ألفا روميو.</div>
+            <div class="tl-body en-content">The inaugural F1 World Championship started at Silverstone, UK. Giuseppe
+              Farina became the first-ever World Champion driving for Alfa Romeo.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1958 — CONSTRUCTORS</div>
+            <div class="tl-title ar-content">بطولة المصنّعين</div>
+            <div class="tl-title en-content">Constructors Championship</div>
+            <div class="tl-body ar-content">أُنشئت بطولة منفصلة لمصنّعي السيارات. وفاز فريق فانوول ببطولة المصنّعين
+              الأولى في التاريخ.</div>
+            <div class="tl-body en-content">A separate championship for car manufacturers was created. Vanwall won the
+              first Constructors Championship.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1970s — AERODYNAMICS</div>
+            <div class="tl-title ar-content">ثورة الديناميكا الهوائية</div>
+            <div class="tl-title en-content">Aerodynamics Revolution</div>
+            <div class="tl-body ar-content">اكتشفت الفرق قوة الضغط الهوائي والأرضي، مما أحدث ثورة في تصميم السيارات وزاد
+              بشكل كبير من سرعات التعرجات.</div>
+            <div class="tl-body en-content">Teams discovered aerodynamic downforce and ground effect, revolutionizing
+              car design and dramatically increasing cornering speeds.</div>
+          </div>
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">1994 — SAFETY</div>
+            <div class="tl-title ar-content">مأساة سينا وإصلاحات السلامة</div>
+            <div class="tl-title en-content">Senna Tragedy & Safety</div>
+            <div class="tl-body ar-content">أدى وفاة أيرتون سينا إلى إصلاح شامل لمعايير السلامة في الفورمولا 1. أصبحت
+              الرياضة أكثر أمانًا بشكل جذري، وتُوِّج ذلك بإدخال نظام Halo عام 2018.</div>
+            <div class="tl-body en-content">Ayrton Senna's death triggered a complete overhaul of F1 safety standards.
+              The sport became dramatically safer, culminating in the Halo device introduced in 2018.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2000–2004 — SCHUMACHER</div>
+            <div class="tl-title ar-content">هيمنة شوماخر</div>
+            <div class="tl-title en-content">Schumacher Dominance</div>
+            <div class="tl-body ar-content">حقق ميخائيل شوماخر 5 ألقاب عالمية متتالية مع فيراري (2000-2004)، وأصبح أكثر
+              سائق يفوز بألقاب في تاريخ الفورمولا 1 بمجموع 7 ألقاب.</div>
+            <div class="tl-body en-content">Michael Schumacher won 5 consecutive world titles with Ferrari (2000-2004),
+              becoming F1's most decorated driver with 7 total championships.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2021 — DRAMA</div>
+            <div class="tl-title ar-content">أكثر موسم إثارةً في التاريخ</div>
+            <div class="tl-title en-content">Most Dramatic Season Ever</div>
+            <div class="tl-body ar-content">فاز ماكس فيرستابن بأول لقب له في آخر دورة من آخر سباق في أبوظبي في نهاية
+              جدلية مقابل لويس هاميلتون، في أكثر مواسم F1 إثارةً على الإطلاق.</div>
+            <div class="tl-body en-content">Max Verstappen won his first title on the final lap of the final race in Abu
+              Dhabi in a controversial finish against Lewis Hamilton — the most dramatic F1 season ever.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2024 — PRESENT</div>
+            <div class="tl-title ar-content">العصر الحديث</div>
+            <div class="tl-title en-content">The Modern Era</div>
+            <div class="tl-body ar-content">تواصل الفورمولا 1 نموها العالمي مع سباقات جديدة في لاس فيغاس وميامي وجدة،
+              وجماهير قياسية حول العالم.</div>
+            <div class="tl-body en-content">F1 continues global growth with new races in Las Vegas, Miami, and Jeddah
+              (Saudi Arabia), attracting record-breaking audiences worldwide.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RACES SECTION -->
+  <section class="section dark-bg" id="races">
+    <div class="section-inner">
+      <div class="section-tag ar-content">السباقات</div>
+      <div class="section-tag en-content">Races</div>
+      <div class="divider"></div>
+      <h2 class="section-title" style="color:#fff">
+        <span class="ar-content">فورمات <span class="en-accent">عطلة السباق</span></span>
+        <span class="en-content">The <span class="en-accent">Race Weekend</span> Format</span>
+      </h2>
+      <p class="section-subtitle ar-content">كل جائزة كبرى تمتد على 4 أيام مليئة بالتوتر والإعداد والمنافسة الحقيقية على
+        الحلبة</p>
+      <p class="section-subtitle en-content">Every Grand Prix spans 4 intense days of preparation, practice, qualifying,
+        and race-day drama</p>
+
+      <div class="rw-grid">
+        <div class="rw-col">
+          <div class="rw-head ar-content">الخميس</div>
+          <div class="rw-head en-content">Thursday</div>
+          <div class="rw-body">
+            <div class="rw-icon">🎙️</div>
+            <div class="rw-session ar-content">يوم الإعلام والصحافة</div>
+            <div class="rw-session en-content">Media & Press Day</div>
+            <span class="rw-tag">Press</span>
+          </div>
+        </div>
+        <div class="rw-col">
+          <div class="rw-head ar-content">الجمعة</div>
+          <div class="rw-head en-content">Friday</div>
+          <div class="rw-body">
+            <div class="rw-icon">🏎️</div>
+            <div class="rw-session ar-content">التدريب الحر 1 و 2</div>
+            <div class="rw-session en-content">Free Practice 1 & 2</div>
+            <span class="rw-tag">FP1 · FP2</span>
+          </div>
+        </div>
+        <div class="rw-col">
+          <div class="rw-head ar-content">السبت صباحاً</div>
+          <div class="rw-head en-content">Saturday AM</div>
+          <div class="rw-body">
+            <div class="rw-icon">⏱️</div>
+            <div class="rw-session ar-content">التدريب الحر 3</div>
+            <div class="rw-session en-content">Free Practice 3</div>
+            <span class="rw-tag">FP3</span>
+          </div>
+        </div>
+        <div class="rw-col">
+          <div class="rw-head ar-content">السبت مساءً</div>
+          <div class="rw-head en-content">Saturday PM</div>
+          <div class="rw-body">
+            <div class="rw-icon">⚡</div>
+            <div class="rw-session ar-content">التأهل Q1 · Q2 · Q3</div>
+            <div class="rw-session en-content">Qualifying Q1 · Q2 · Q3</div>
+            <span class="rw-tag main">QUALIFYING</span>
+          </div>
+        </div>
+        <div class="rw-col">
+          <div class="rw-head ar-content">الأحد</div>
+          <div class="rw-head en-content">Sunday</div>
+          <div class="rw-body">
+            <div class="rw-icon">🏆</div>
+            <div class="rw-session ar-content">سباق الجائزة الكبرى</div>
+            <div class="rw-session en-content">The Grand Prix Race</div>
+            <span class="rw-tag main">RACE DAY</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:18px;font-weight:800;color:#fff;margin-bottom:1.5rem">
+        <span class="ar-content">نظام النقاط</span>
+        <span class="en-content">Points System</span>
+      </h3>
+      <div class="points-grid">
+        <div class="point-card">
+          <div class="pos ar-content">المركز الأول 🥇</div>
+          <div class="pos en-content">1st Place 🥇</div>
+          <div class="pts">25</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">المركز الثاني 🥈</div>
+          <div class="pos en-content">2nd Place 🥈</div>
+          <div class="pts">18</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">المركز الثالث 🥉</div>
+          <div class="pos en-content">3rd Place 🥉</div>
+          <div class="pts">15</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">المركز الرابع</div>
+          <div class="pos en-content">4th Place</div>
+          <div class="pts">12</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">الخامس</div>
+          <div class="pos en-content">5th Place</div>
+          <div class="pts">10</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">السادس</div>
+          <div class="pos en-content">6th Place</div>
+          <div class="pts">8</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">السابع</div>
+          <div class="pos en-content">7th Place</div>
+          <div class="pts">6</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">الثامن</div>
+          <div class="pos en-content">8th Place</div>
+          <div class="pts">4</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">التاسع</div>
+          <div class="pos en-content">9th Place</div>
+          <div class="pts">2</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card">
+          <div class="pos ar-content">العاشر</div>
+          <div class="pos en-content">10th Place</div>
+          <div class="pts">1</div>
+          <div class="lbl ar-content">نقطة</div>
+          <div class="lbl en-content">points</div>
+        </div>
+        <div class="point-card" style="border-color:rgba(225,6,0,0.3)">
+          <div class="pos ar-content">⚡ أسرع لفة</div>
+          <div class="pos en-content">⚡ Fastest Lap</div>
+          <div class="pts">+1</div>
+          <div class="lbl ar-content">نقطة إضافية</div>
+          <div class="lbl en-content">bonus (top 10)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARS SECTION -->
+  <section class="section off-bg" id="cars">
+    <div class="section-inner">
+      <div class="section-tag ar-content">السيارات</div>
+      <div class="section-tag en-content">Cars</div>
+      <div class="divider"></div>
+      <h2 class="section-title ar-content">كيف تُصنع سيارة <span class="en-accent">F1</span></h2>
+      <h2 class="section-title en-content">How an <span class="en-accent">F1</span> Car is Built</h2>
+      <p class="section-subtitle ar-content">تحتوي كل سيارة فورمولا 1 على أكثر من 80,000 مكون، وتستغرق آلاف ساعات
+        الهندسة لتصميمها وبناؤها من الصفر</p>
+      <p class="section-subtitle en-content">Each F1 car contains over 80,000 components and takes thousands of
+        engineering hours to design and build from scratch</p>
+
+      <div class="parts-grid">
+        <div class="part-card">
+          <div class="part-num">01</div>
+          <div class="part-title">
+            <span class="ar-content">وحدة الطاقة الهجينة</span>
+            <span class="en-content">Power Unit</span>
+            <span class="en">Power Unit</span>
+          </div>
+          <div class="part-body ar-content">محرك V6 هجين سعة 1.6 لتر ينتج أكثر من 1000 حصان. ست مكونات رئيسية خاضعة
+            لرقابة صارمة من FIA، تعمل بتقنية استرداد الطاقة (ERS) الحديثة.</div>
+          <div class="part-body en-content">1.6L V6 Hybrid engine producing 1,000+ hp. Six major components strictly
+            regulated by the FIA, using cutting-edge Energy Recovery Systems (ERS).</div>
+        </div>
+        <div class="part-card">
+          <div class="part-num">02</div>
+          <div class="part-title">
+            <span class="ar-content">هيكل الكربون المونوكوك</span>
+            <span class="en-content">Carbon Monocoque</span>
+            <span class="en">Carbon Monocoque Chassis</span>
+          </div>
+          <div class="part-body ar-content">خلية أمان من ألياف الكربون تحيط بالسائق، تتحمل تأثيرات تصل إلى 50G. وزنها
+            أقل من 35 كيلوجرام رغم صلابتها الاستثنائية.</div>
+          <div class="part-body en-content">Carbon fiber safety cell surrounding the driver, surviving 50G impacts.
+            Weighs under 35kg despite exceptional rigidity and strength.</div>
+        </div>
+        <div class="part-card">
+          <div class="part-num">03</div>
+          <div class="part-title">
+            <span class="ar-content">الديناميكا الهوائية</span>
+            <span class="en-content">Aerodynamics</span>
+            <span class="en">Aerodynamics</span>
+          </div>
+          <div class="part-body ar-content">الجناح الأمامي والخلفي والأرضية والهيكل تولّد ما يصل إلى 1000 كيلوجرام من
+            الضغط الهوائي. يمكن للسيارة نظرياً القيادة على سقف نفق مقلوبة.</div>
+          <div class="part-body en-content">Front wing, rear wing, floor, and bodywork generate up to 1,000kg of
+            downforce. Theoretically the car could drive upside down through a tunnel.</div>
+        </div>
+        <div class="part-card">
+          <div class="part-num">04</div>
+          <div class="part-title">
+            <span class="ar-content">الإطارات</span>
+            <span class="en-content">Tyres</span>
+            <span class="en">Pirelli Tyres</span>
+          </div>
+          <div class="part-body ar-content">تورد بيريلي 5 مركبات: C1 (صلبة جداً) إلى C5 (ناعمة جداً). استراتيجية
+            الإطارات هي المفتاح الأساسي للفوز بالسباقات.</div>
+          <div class="part-body en-content">Pirelli supplies 5 compounds from C1 (hardest) to C5 (softest). Tyre
+            strategy is one of the most crucial factors in winning races.</div>
+        </div>
+        <div class="part-card">
+          <div class="part-num">05</div>
+          <div class="part-title">
+            <span class="ar-content">صندوق التروس</span>
+            <span class="en-content">Gearbox</span>
+            <span class="en">Semi-Auto Gearbox</span>
+          </div>
+          <div class="part-body ar-content">علبة تروس نصف أوتوماتيكية ذات 8 سرعات. تتم عملية تغيير الترس في 50 ميلي
+            ثانية فقط، وهو أسرع من رمش العين.</div>
+          <div class="part-body en-content">8-speed semi-automatic gearbox. Gear changes happen in just 50 milliseconds
+            — faster than the blink of an eye.</div>
+        </div>
+        <div class="part-card">
+          <div class="part-num">06</div>
+          <div class="part-title">
+            <span class="ar-content">الفرامل الكربونية</span>
+            <span class="en-content">Carbon Brakes</span>
+            <span class="en">Carbon-Carbon Brakes</span>
+          </div>
+          <div class="part-body ar-content">أقراص فرامل كربون-كربون تصل حرارتها إلى 1000°م. تستطيع تباطؤ السيارة من 300
+            كم/س إلى التوقف التام في 3.5 ثانية فقط.</div>
+          <div class="part-body en-content">Carbon-carbon disc brakes reaching 1,000°C. Can decelerate from 300 km/h to
+            a complete stop in just 3.5 seconds.</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:18px;font-weight:800;margin-bottom:1.5rem;color:#111">
+        <span class="ar-content">أرقام الأداء</span>
+        <span class="en-content">Performance Numbers</span>
+      </h3>
+      <div class="speed-list">
+        <div class="speed-row">
+          <div class="speed-label ar-content">🚀 أقصى سرعة</div>
+          <div class="speed-label en-content">🚀 Top Speed</div>
+          <div class="speed-track">
+            <div class="speed-fill" style="width:93%"></div>
+          </div>
+          <div class="speed-val">373 km/h</div>
+        </div>
+        <div class="speed-row">
+          <div class="speed-label ar-content">⚡ التسارع 0–100</div>
+          <div class="speed-label en-content">⚡ 0–100 km/h</div>
+          <div class="speed-track">
+            <div class="speed-fill" style="width:20%"></div>
+          </div>
+          <div class="speed-val">2.4 sec</div>
+        </div>
+        <div class="speed-row">
+          <div class="speed-label ar-content">🔧 أقصى دورات</div>
+          <div class="speed-label en-content">🔧 Max RPM</div>
+          <div class="speed-track">
+            <div class="speed-fill" style="width:85%"></div>
+          </div>
+          <div class="speed-val">15,000 RPM</div>
+        </div>
+        <div class="speed-row">
+          <div class="speed-label ar-content">⬇️ الضغط الهوائي</div>
+          <div class="speed-label en-content">⬇️ Downforce</div>
+          <div class="speed-track">
+            <div class="speed-fill" style="width:88%"></div>
+          </div>
+          <div class="speed-val">1,000+ kg</div>
+        </div>
+        <div class="speed-row">
+          <div class="speed-label ar-content">⚖️ الوزن الأدنى</div>
+          <div class="speed-label en-content">⚖️ Min. Weight</div>
+          <div class="speed-track">
+            <div class="speed-fill" style="width:35%"></div>
+          </div>
+          <div class="speed-val">798 kg</div>
+        </div>
+        <div class="speed-row">
+          <div class="speed-label ar-content">🏁 وقف في الحفرة</div>
+          <div class="speed-label en-content">🏁 Pit Stop Time</div>
+          <div class="speed-track">
+            <div class="speed-fill" style="width:12%"></div>
+          </div>
+          <div class="speed-val">~2.5 sec</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAMS SECTION -->
+  <section class="section dark-bg" id="teams">
+    <div class="section-inner">
+      <div class="section-tag ar-content">الفرق</div>
+      <div class="section-tag en-content">Teams</div>
+      <div class="divider"></div>
+      <h2 class="section-title" style="color:#fff">
+        <span class="ar-content">فرق <span class="en-accent">Constructor</span> 2024</span>
+        <span class="en-content">The 2024 <span class="en-accent">Constructor</span> Teams</span>
+      </h2>
+      <p class="section-subtitle ar-content">عشرة فرق من أرقى المصنّعين حول العالم تتنافس على لقب البطل في كل سباق</p>
+      <p class="section-subtitle en-content">Ten elite teams from around the world compete for the championship title at
+        every race</p>
+
+      <div class="teams-grid">
+        <div class="team-card">
+          <div class="team-flag">🇦🇹</div>
+          <div class="team-stripe" style="background:#3671C6"></div>
+          <div class="team-name">Red Bull Racing</div>
+          <div class="team-base ar-content">ميلتون كينز · إنجلترا</div>
+          <div class="team-base en-content">Milton Keynes · UK</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇮🇹</div>
+          <div class="team-stripe" style="background:#E8002D"></div>
+          <div class="team-name">Scuderia Ferrari</div>
+          <div class="team-base ar-content">مارانيلو · إيطاليا</div>
+          <div class="team-base en-content">Maranello · Italy</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇩🇪</div>
+          <div class="team-stripe" style="background:#27F4D2"></div>
+          <div class="team-name">Mercedes-AMG</div>
+          <div class="team-base ar-content">براكلي · إنجلترا</div>
+          <div class="team-base en-content">Brackley · UK</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇬🇧</div>
+          <div class="team-stripe" style="background:#FF8000"></div>
+          <div class="team-name">McLaren F1</div>
+          <div class="team-base ar-content">وكينج · إنجلترا</div>
+          <div class="team-base en-content">Woking · UK</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇬🇧</div>
+          <div class="team-stripe" style="background:#358C75"></div>
+          <div class="team-name">Aston Martin</div>
+          <div class="team-base ar-content">سيلفرستون · إنجلترا</div>
+          <div class="team-base en-content">Silverstone · UK</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇫🇷</div>
+          <div class="team-stripe" style="background:#A020F0"></div>
+          <div class="team-name">Alpine F1</div>
+          <div class="team-base ar-content">إنستون · إنجلترا</div>
+          <div class="team-base en-content">Enstone · UK</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇺🇸</div>
+          <div class="team-stripe" style="background:#E80020"></div>
+          <div class="team-name">Haas F1 Team</div>
+          <div class="team-base ar-content">كانابوليس · أمريكا</div>
+          <div class="team-base en-content">Kannapolis · USA</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇨🇭</div>
+          <div class="team-stripe" style="background:#52E252"></div>
+          <div class="team-name">Kick Sauber</div>
+          <div class="team-base ar-content">هينويل · سويسرا</div>
+          <div class="team-base en-content">Hinwil · Switzerland</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇮🇹</div>
+          <div class="team-stripe" style="background:#5E8FAA"></div>
+          <div class="team-name">Visa RB (VCARB)</div>
+          <div class="team-base ar-content">فاينزا · إيطاليا</div>
+          <div class="team-base en-content">Faenza · Italy</div>
+        </div>
+        <div class="team-card">
+          <div class="team-flag">🇬🇧</div>
+          <div class="team-stripe" style="background:#64C4FF"></div>
+          <div class="team-name">Williams Racing</div>
+          <div class="team-base ar-content">غروف · إنجلترا</div>
+          <div class="team-base en-content">Grove · UK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAMPIONS -->
+  <section class="section light-bg" id="champions">
+    <div class="section-inner">
+      <div class="section-tag ar-content">أبطال العالم</div>
+      <div class="section-tag en-content">World Champions</div>
+      <div class="divider"></div>
+      <h2 class="section-title ar-content">أبطال <span class="en-accent">Formula 1</span> الأسطوريون</h2>
+      <h2 class="section-title en-content">Legendary <span class="en-accent">Formula 1</span> Champions</h2>
+      <p class="section-subtitle ar-content">هؤلاء هم أعظم السائقين في تاريخ الفورمولا 1، الذين تركوا بصماتهم الخالدة
+        على هذه الرياضة</p>
+      <p class="section-subtitle en-content">The greatest drivers in Formula 1 history, who left their eternal mark on
+        the sport</p>
+
+      <div class="champ-list">
+        <div class="champ-row">
+          <div class="champ-rank">🏆</div>
+          <div class="champ-info">
+            <div class="champ-name">Max Verstappen</div>
+            <div class="champ-team ar-content">ريد بول ريسينج · هولندا</div>
+            <div class="champ-team en-content">Red Bull Racing · Netherlands</div>
+          </div>
+          <div class="champ-years">2021 · 2022 · 2023</div>
+          <div class="champ-titles">3</div>
+        </div>
+        <div class="champ-row">
+          <div class="champ-rank">🏆</div>
+          <div class="champ-info">
+            <div class="champ-name">Lewis Hamilton</div>
+            <div class="champ-team ar-content">ماكلارين / مرسيدس · بريطانيا</div>
+            <div class="champ-team en-content">McLaren / Mercedes · Britain</div>
+          </div>
+          <div class="champ-years">2008·2014·2015·2017·2018·2019·2020</div>
+          <div class="champ-titles">7</div>
+        </div>
+        <div class="champ-row">
+          <div class="champ-rank">🏆</div>
+          <div class="champ-info">
+            <div class="champ-name">Michael Schumacher</div>
+            <div class="champ-team ar-content">بينيتون / فيراري · ألمانيا</div>
+            <div class="champ-team en-content">Benetton / Ferrari · Germany</div>
+          </div>
+          <div class="champ-years">1994·1995·2000·2001·2002·2003·2004</div>
+          <div class="champ-titles">7</div>
+        </div>
+        <div class="champ-row">
+          <div class="champ-rank">🏆</div>
+          <div class="champ-info">
+            <div class="champ-name">Ayrton Senna</div>
+            <div class="champ-team ar-content">ماكلارين · البرازيل</div>
+            <div class="champ-team en-content">McLaren · Brazil</div>
+          </div>
+          <div class="champ-years">1988 · 1990 · 1991</div>
+          <div class="champ-titles">3</div>
+        </div>
+        <div class="champ-row">
+          <div class="champ-rank">🏆</div>
+          <div class="champ-info">
+            <div class="champ-name">Alain Prost</div>
+            <div class="champ-team ar-content">ماكلارين / ويليامز · فرنسا</div>
+            <div class="champ-team en-content">McLaren / Williams · France</div>
+          </div>
+          <div class="champ-years">1985 · 1986 · 1989 · 1993</div>
+          <div class="champ-titles">4</div>
+        </div>
+        <div class="champ-row">
+          <div class="champ-rank">🏆</div>
+          <div class="champ-info">
+            <div class="champ-name">Sebastian Vettel</div>
+            <div class="champ-team ar-content">ريد بول ريسينج · ألمانيا</div>
+            <div class="champ-team en-content">Red Bull Racing · Germany</div>
+          </div>
+          <div class="champ-years">2010 · 2011 · 2012 · 2013</div>
+          <div class="champ-titles">4</div>
+        </div>
+        <div class="champ-row">
+          <div class="champ-rank">🏆</div>
+          <div class="champ-info">
+            <div class="champ-name">Fernando Alonso</div>
+            <div class="champ-team ar-content">رينو · إسبانيا</div>
+            <div class="champ-team en-content">Renault · Spain</div>
+          </div>
+          <div class="champ-years">2005 · 2006</div>
+          <div class="champ-titles">2</div>
+        </div>
+        <div class="champ-row">
+          <div class="champ-rank">🏆</div>
+          <div class="champ-info">
+            <div class="champ-name">Giuseppe Farina</div>
+            <div class="champ-team ar-content">ألفا روميو · إيطاليا</div>
+            <div class="champ-team en-content">Alfa Romeo · Italy</div>
+          </div>
+          <div class="champ-years">1950 — First Ever Champion</div>
+          <div class="champ-titles">1</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES SECTION -->
+  <section class="section dark-bg" id="rules">
+    <div class="section-inner">
+      <div class="section-tag ar-content">القوانين والأنظمة</div>
+      <div class="section-tag en-content">Rules & Regulations</div>
+      <div class="divider"></div>
+      <h2 class="section-title" style="color:#fff">
+        <span class="ar-content">قواعد <span class="en-accent">Formula 1</span></span>
+        <span class="en-content"><span class="en-accent">Formula 1</span> Regulations</span>
+      </h2>
+      <p class="section-subtitle ar-content">الفورمولا 1 تخضع لقواعد تقنية وقوانين سباق دقيقة تضمن المنافسة العادلة
+        والسلامة العالية</p>
+      <p class="section-subtitle en-content">F1 is governed by precise technical rules and sporting regulations ensuring
+        fair competition and the highest safety standards</p>
+
+      <div class="rules-grid">
+        <div class="rule-card">
+          <span class="rule-icon">🔓</span>
+          <div class="rule-title ar-content">نظام DRS</div>
+          <div class="rule-title en-content">DRS System</div>
+          <div class="rule-body ar-content">نظام تقليل السحب الهوائي يفتح الجناح الخلفي في مناطق محددة لزيادة السرعة
+            وتسهيل التجاوز. يُفعّل فقط عندما يكون السائق على بُعد ثانية واحدة من السيارة أمامه.</div>
+          <div class="rule-body en-content">Drag Reduction System opens the rear wing on designated straights to
+            increase speed and enable overtaking. Only active when within 1 second of the car ahead.</div>
+        </div>
+        <div class="rule-card">
+          <span class="rule-icon">🛡️</span>
+          <div class="rule-title ar-content">نظام Halo للسلامة</div>
+          <div class="rule-title en-content">Halo Safety Device</div>
+          <div class="rule-body ar-content">هيكل تيتانيوم إلزامي منذ 2018 يحمي رأس السائق. أنقذ أرواح سائقين عديدين،
+            وأصبح عنصراً أساسياً في سلامة الفورمولا 1 الحديثة.</div>
+          <div class="rule-body en-content">Mandatory titanium head-protection structure since 2018. Has saved multiple
+            drivers' lives and is now considered essential to modern F1 safety.</div>
+        </div>
+        <div class="rule-card">
+          <span class="rule-icon">💰</span>
+          <div class="rule-title ar-content">سقف الميزانية</div>
+          <div class="rule-title en-content">Budget Cap</div>
+          <div class="rule-body ar-content">يجب أن تنفق الفرق أقل من 135 مليون دولار سنوياً على تطوير السيارة، مما يضمن
+            منافسة أكثر توازناً بين الفرق الكبيرة والصغيرة.</div>
+          <div class="rule-body en-content">Teams must spend under $135 million per season on car development, ensuring
+            more balanced competition between large and smaller budget teams.</div>
+        </div>
+        <div class="rule-card">
+          <span class="rule-icon">🏁</span>
+          <div class="rule-title ar-content">Parc Fermé</div>
+          <div class="rule-title en-content">Parc Fermé Rule</div>
+          <div class="rule-body ar-content">بعد بداية التأهل، لا يمكن للفرق تغيير إعداد السيارة بشكل كبير. يضمن ذلك
+            انعكاساً عادلاً لأداء التأهل في السباق.</div>
+          <div class="rule-body en-content">After qualifying begins, teams cannot significantly alter car setup. This
+            ensures a fair representation of qualifying performance carries into the race.</div>
+        </div>
+        <div class="rule-card">
+          <span class="rule-icon">🔄</span>
+          <div class="rule-title ar-content">قواعد الإطارات</div>
+          <div class="rule-title en-content">Tyre Regulations</div>
+          <div class="rule-body ar-content">يجب على الفرق استخدام مركّبين مختلفين من الإطارات على الأقل خلال السباق.
+            تتراوح سرعة وقفات الحفرة حوالي 2.5 ثانية.</div>
+          <div class="rule-body en-content">Teams must use at least 2 different tyre compounds during the race. Pit
+            stops average around 2.5 seconds — won or lost in detail.</div>
+        </div>
+        <div class="rule-card">
+          <span class="rule-icon">🚗</span>
+          <div class="rule-title ar-content">سيارة الأمان</div>
+          <div class="rule-title en-content">Safety Car</div>
+          <div class="rule-body ar-content">تُنشر لتحييد السباق أثناء الحوادث. جميع السيارات تصطف خلفها. يوجد أيضاً نظام
+            سيارة الأمان الافتراضية (VSC) للحوادث الأقل خطورة.</div>
+          <div class="rule-body en-content">Deployed to neutralize racing during incidents. All cars queue behind it.
+            The Virtual Safety Car (VSC) also exists for minor on-track incidents.</div>
+        </div>
+        <div class="rule-card">
+          <span class="rule-icon">⚖️</span>
+          <div class="rule-title ar-content">الوزن الأدنى</div>
+          <div class="rule-title en-content">Minimum Weight</div>
+          <div class="rule-body ar-content">يجب ألا يقل إجمالي وزن السيارة والسائق عن 798 كيلوجرام. تُوزَّن السيارات بعد
+            كل سباق للتحقق من الامتثال للأنظمة.</div>
+          <div class="rule-body en-content">The combined car and driver weight must not be less than 798kg. Cars are
+            weighed after every race to verify compliance with regulations.</div>
+        </div>
+        <div class="rule-card">
+          <span class="rule-icon">🚩</span>
+          <div class="rule-title ar-content">نظام الرايات</div>
+          <div class="rule-title en-content">Flag System</div>
+          <div class="rule-body ar-content">راية صفراء: خطر — لا تجاوز. راية حمراء: إيقاف السباق. راية سوداء وبيضاء:
+            تحذير لسلوك غير رياضي. راية مربعات: نهاية السباق.</div>
+          <div class="rule-body en-content">Yellow: danger, no overtaking. Red: race stopped. Black & white: unsporting
+            warning. Chequered: race finished. Blue: let faster car pass.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DR. SECTION -->
+  <div class="dr-section">
+    <div class="dr-inner">
+      <div class="dr-avatar-large">MQ</div>
+      <div class="dr-label ar-content">مُهدى بشكل خاص إلى</div>
+      <div class="dr-label en-content">Dedicated Exclusively To</div>
+      <div class="dr-name ar-content">الدكتور محمد قاسم</div>
+      <div class="dr-name en-content">Dr. Mohammed Qasim</div>
+      <div class="dr-title-text">Dr. Mohammed Qasim</div>
+      <p class="dr-msg ar-content">
+        صُمِّم هذا الدليل الشامل والاحترافي لعالم الفورمولا 1 خصيصاً للدكتور محمد قاسم،
+        ليكون مرجعاً متكاملاً يضم كل ما تحتاج معرفته عن أعظم رياضة سيارات في التاريخ —
+        من بداياتها الأولى عام 1950، مروراً بأسرار تصنيع السيارات الخارقة، وصولاً إلى
+        أعظم أبطالها وأهم قوانينها. كل شيء في مكان واحد، بتصميم احترافي يليق بعشقك لهذه الرياضة.
+      </p>
+      <p class="dr-msg en-content">
+        This comprehensive professional guide to Formula 1 was designed exclusively for Dr. Mohammed Qasim —
+        a complete reference covering everything you need to know about the greatest motorsport in history.
+        From its very origins in 1950, through the secrets of building extraordinary race cars, to its
+        greatest champions and most important regulations. Everything in one place, in a professional
+        design befitting your passion for this incredible sport.
+      </p>
+      <div class="dr-badges">
+        <div class="dr-badge"><span class="ico">🏁</span><span class="ar-content">75+ سنة من التاريخ</span><span
+            class="en-content">75+ Years of History</span></div>
+        <div class="dr-badge"><span class="ico">🚀</span><span class="ar-content">تميّز هندسي</span><span
+            class="en-content">Engineering Excellence</span></div>
+        <div class="dr-badge"><span class="ico">🏆</span><span class="ar-content">إرث الأبطال</span><span
+            class="en-content">Champions Legacy</span></div>
+        <div class="dr-badge"><span class="ico">❤️</span><span class="ar-content">شغف السرعة</span><span
+            class="en-content">Passion for Speed</span></div>
+        <div class="dr-badge"><span class="ico">🌍</span><span class="ar-content">منافسة عالمية</span><span
+            class="en-content">Global Competition</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">FORMULA <span>1</span></div>
+    <div class="footer-sub ar-content">قمة رياضة السيارات · منذ عام 1950</div>
+    <div class="footer-sub en-content">The Pinnacle of Motorsport · Established 1950</div>
+    <nav class="footer-nav">
+      <a href="#history"><span class="ar-content">التاريخ</span><span class="en-content">History</span></a>
+      <a href="#races"><span class="ar-content">السباقات</span><span class="en-content">Races</span></a>
+      <a href="#cars"><span class="ar-content">السيارات</span><span class="en-content">Cars</span></a>
+      <a href="#teams"><span class="ar-content">الفرق</span><span class="en-content">Teams</span></a>
+      <a href="#champions"><span class="ar-content">الأبطال</span><span class="en-content">Champions</span></a>
+      <a href="#rules"><span class="ar-content">القوانين</span><span class="en-content">Rules</span></a>
+    </nav>
+    <div class="footer-ded ar-content">❤ صُنع خصيصاً للدكتور محمد قاسم</div>
+    <div class="footer-ded en-content">❤ Made Exclusively for Dr. Mohammed Qasim</div>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      const body = document.body;
+      const btnAr = document.getElementById('btn-ar');
+      const btnEn = document.getElementById('btn-en');
+      if (lang === 'en') {
+        body.classList.add('lang-en');
+        body.setAttribute('dir', 'ltr');
+        btnEn.classList.add('active');
+        btnAr.classList.remove('active');
+      } else {
+        body.classList.remove('lang-en');
+        body.setAttribute('dir', 'rtl');
+        btnAr.classList.add('active');
+        btnEn.classList.remove('active');
+      }
+    }
+
+    // Animate speed bars on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const fills = entry.target.querySelectorAll('.speed-fill');
+          fills.forEach(f => {
+            const w = f.style.width;
+            f.style.width = '0';
+            setTimeout(() => { f.style.width = w; }, 100);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const speedList = document.querySelector('.speed-list');
+    if (speedList) observer.observe(speedList);
+
+    // Smooth navbar highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? '#e10600' : '';
+      });
+    });
+  </script>
+</body>
+
+</html>
